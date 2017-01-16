@@ -22,18 +22,20 @@ namespace Wechat
         int pages = 0;
         private void btn1_Click(object sender, EventArgs e)
         {
+            //显示选择文件窗口
             this.openFileDialog1.ShowDialog();
-
-            string a = this.openFileDialog1.FileName;
-            string b = System.IO.Path.GetFileName(a);
-            string c = (DateTime.Now.ToString());
-            K = a;
+            //获取文件绝对路径文件名
+            string fileName = this.openFileDialog1.FileName;
+            //返回指定路径字符串的文件名和扩展名
+            string exFileName = System.IO.Path.GetFileName(fileName);
+            string fileTime = (DateTime.Now.ToString());
+            K = fileName;
             //选择文件后，用openFileDialog1的FileName属性获取文件的绝对路径
             ListViewItem lvi = new ListViewItem();
 
-            lvi.Text = b;
+            lvi.Text = exFileName;
             //lvi.SubItems.Add(a);
-            lvi.SubItems.Add(c);
+            lvi.SubItems.Add(fileTime);
             this.listView1.Items.Add(lvi);
             this.listView1.EndUpdate();  //结束数据处理，UI界面一次性绘制。
 
@@ -41,7 +43,7 @@ namespace Wechat
             Microsoft.Office.Interop.Word.Application myWordApp = new Microsoft.Office.Interop.Word.Application();
             myWordApp.Visible = false;
             object oMissing = System.Reflection.Missing.Value;
-            object filePath = a; //这里是Word文件的路径
+            object filePath = fileName; //这里是Word文件的路径
                                  //打开文件
             Document myWordDoc = myWordApp.Documents.Open(
                 ref filePath, ref oMissing, ref oMissing, ref oMissing,
@@ -86,6 +88,7 @@ namespace Wechat
         private void button2_Click(object sender, EventArgs e)
         {
             打印界面 print = new 打印界面();
+            this.setMessage(sum);
             print.set(this.getMessage());
             print.Show();
             this.Hide();
