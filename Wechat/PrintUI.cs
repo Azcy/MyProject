@@ -11,16 +11,11 @@ using System.Windows.Forms;
 namespace Wechat
 {
    
-    public partial class 打印界面 : Form
+    public partial class PrintUI : Form
     { private int page1=0;
-        public 打印界面()
+        public PrintUI()
         {
             InitializeComponent();
-        }
-
-        private void 打印界面_Load(object sender, EventArgs e)
-        {
-
         }
        
         public void set(int sum)
@@ -43,7 +38,7 @@ namespace Wechat
                 this.set1(this.comboBox1.Text);
                 this.set2(this.comboBox2.Text);
                 this.set3(Convert.ToInt32(this.comboBox3.Text));
-                支付界面 pay1 = new 支付界面();
+                NativePayUI pay1 = new NativePayUI();
                 pay1.payset1(this.get1());
                 pay1.payset2(this.get2());
                 pay1.payset3(this.get3());

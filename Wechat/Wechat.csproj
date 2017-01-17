@@ -88,25 +88,25 @@
     <Compile Include="configure\WxPayApi.cs" />
     <Compile Include="Externs.cs" />
     <Compile Include="LocalPrinter.cs" />
-    <Compile Include="客户端界面.cs">
+    <Compile Include="ClientUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="客户端界面.Designer.cs">
-      <DependentUpon>客户端界面.cs</DependentUpon>
+    <Compile Include="ClientUI.Designer.cs">
+      <DependentUpon>ClientUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="打印界面.cs">
+    <Compile Include="PrintUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="打印界面.Designer.cs">
-      <DependentUpon>打印界面.cs</DependentUpon>
+    <Compile Include="PrintUI.Designer.cs">
+      <DependentUpon>PrintUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="支付界面.cs">
+    <Compile Include="NativePayUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="支付界面.Designer.cs">
-      <DependentUpon>支付界面.cs</DependentUpon>
+    <Compile Include="NativePayUI.Designer.cs">
+      <DependentUpon>NativePayUI.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -117,14 +117,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="客户端界面.resx">
-      <DependentUpon>客户端界面.cs</DependentUpon>
+    <EmbeddedResource Include="ClientUI.resx">
+      <DependentUpon>ClientUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="打印界面.resx">
-      <DependentUpon>打印界面.cs</DependentUpon>
+    <EmbeddedResource Include="PrintUI.resx">
+      <DependentUpon>PrintUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="支付界面.resx">
-      <DependentUpon>支付界面.cs</DependentUpon>
+    <EmbeddedResource Include="NativePayUI.resx">
+      <DependentUpon>NativePayUI.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -1,6 +1,6 @@
 ﻿namespace Wechat
 {
-    partial class 客户端界面
+    partial class ClientUI
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -42,9 +42,10 @@
             // 
             // btn1
             // 
-            this.btn1.Location = new System.Drawing.Point(33, 251);
+            this.btn1.Location = new System.Drawing.Point(25, 201);
+            this.btn1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn1.Name = "btn1";
-            this.btn1.Size = new System.Drawing.Size(82, 33);
+            this.btn1.Size = new System.Drawing.Size(62, 26);
             this.btn1.TabIndex = 0;
             this.btn1.Text = "浏览";
             this.btn1.UseVisualStyleBackColor = true;
@@ -56,9 +57,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(232, 251);
+            this.button1.Location = new System.Drawing.Point(174, 201);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 33);
+            this.button1.Size = new System.Drawing.Size(56, 26);
             this.button1.TabIndex = 2;
             this.button1.Text = "修改";
             this.button1.UseVisualStyleBackColor = true;
@@ -66,9 +68,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(438, 251);
+            this.button2.Location = new System.Drawing.Point(328, 201);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 33);
+            this.button2.Size = new System.Drawing.Size(56, 26);
             this.button2.TabIndex = 3;
             this.button2.Text = "下一步";
             this.button2.UseVisualStyleBackColor = true;
@@ -81,43 +84,45 @@
             this.ToolStripMenuItem1,
             this.ToolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 84);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 48);
             // 
             // ToolStripMenuItem1
             // 
             this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
-            this.ToolStripMenuItem1.Size = new System.Drawing.Size(144, 26);
+            this.ToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
             this.ToolStripMenuItem1.Text = "打开文件";
             this.ToolStripMenuItem1.Click += new System.EventHandler(this.dToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem2
             // 
             this.ToolStripMenuItem2.Name = "ToolStripMenuItem2";
-            this.ToolStripMenuItem2.Size = new System.Drawing.Size(181, 26);
+            this.ToolStripMenuItem2.Size = new System.Drawing.Size(124, 22);
             this.ToolStripMenuItem2.Text = "删除文件";
             this.ToolStripMenuItem2.Click += new System.EventHandler(this.ToolStripMenuItem2_Click);
             // 
             // listView1
             // 
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView1.Location = new System.Drawing.Point(12, 12);
+            this.listView1.Location = new System.Drawing.Point(9, 10);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(555, 211);
+            this.listView1.Size = new System.Drawing.Size(417, 170);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged_2);
             // 
-            // 客户端界面
+            // ClientUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 296);
+            this.ClientSize = new System.Drawing.Size(456, 237);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn1);
-            this.Name = "客户端界面";
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "ClientUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.客户端界面_Load);
             this.contextMenuStrip1.ResumeLayout(false);

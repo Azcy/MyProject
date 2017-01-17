@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Wechat
 {
-    public partial class 客户端界面 : Form
+    public partial class ClientUI : Form
     {
-        public 客户端界面()
+        public ClientUI()
         {
             InitializeComponent();
         }
@@ -29,40 +29,40 @@ namespace Wechat
 
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                 path1 = this.openFileDialog1.FileName;
-                 filename1 = System.IO.Path.GetFileName(path1);
+                //获取打开文件的名字和打开时间，用于显示在listView上
+                path1 = this.openFileDialog1.FileName;
+                filename1 = System.IO.Path.GetFileName(path1);
                 datatime1 = (DateTime.Now.ToString());
                 K = path1;
                 //选择文件后，用openFileDialog1的FileName属性获取文件的绝对路径
                 ListViewItem lvi = new ListViewItem();
-
+                //将文件名字和时间显示到listView上
                 lvi.Text = filename1;
-                //lvi.SubItems.Add(path);
                 lvi.SubItems.Add(datatime1);
                 this.listView1.Items.Add(lvi);
                 this.listView1.EndUpdate();  //结束数据处理，UI界面一次性绘制。
-
+                //开放修改按钮和下一步按钮
+                button1.Enabled = true;
+                button2.Enabled = true;
 
                 Microsoft.Office.Interop.Word.Application myWordApp = new Microsoft.Office.Interop.Word.Application();
                 myWordApp.Visible = false;
                 object oMissing = System.Reflection.Missing.Value;
                 object filePath = path1; //这里是Word文件的路径
-                                     //打开文件
+                //打开word文档
                 Document myWordDoc = myWordApp.Documents.Open(
                     ref filePath, ref oMissing, ref oMissing, ref oMissing,
                     ref oMissing, ref oMissing, ref oMissing, ref oMissing,
                     ref oMissing, ref oMissing, ref oMissing, ref oMissing,
                     ref oMissing, ref oMissing, ref oMissing, ref oMissing);
-                //下面是取得打开文件的页数
-                 pages[i] = myWordDoc.ComputeStatistics(WdStatistic.wdStatisticPages, ref oMissing);
+                //取得打开文件的页数
+                pages[i] = myWordDoc.ComputeStatistics(WdStatistic.wdStatisticPages, ref oMissing);
                 sum += pages[i];
                 
-              //  Console.WriteLine(pages);
-                //this.richTextBox1 = myWordDoc.Content.Text;
                 //关闭文件
                 myWordDoc.Close(ref oMissing, ref oMissing, ref oMissing);
                 myWordApp.Quit(ref oMissing, ref oMissing, ref oMissing);
-                //  textBox1.Text = page;
+
                 i++;
             }
             
@@ -95,36 +95,27 @@ namespace Wechat
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (listView1.Items.Count == 0)
-            {
-                MessageBox.Show("请浏览你所需要打印的文件。");
-            }
-            else
-            {
-                打印界面 print = new 打印界面();
+                PrintUI print = new PrintUI();
                 this.setMessage(sum);
                 print.set(this.getMessage());   //传递word的页数
                 print.Show();
                 this.Hide();
-            }
+            
         }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-       
-
 
         private void 客户端界面_Load(object sender, EventArgs e)
         {
-            //button3.Enabled = false;
             this.listView1.Columns.Add("文件名", 220, HorizontalAlignment.Center);
            
             this.listView1.Columns.Add("时间", 210, HorizontalAlignment.Center);
             this.listView1.BeginUpdate();
             this.listView1.EndUpdate();
+            //没加文件之前按钮不可点击
+            if(this.listView1.Items.Count == 0)
+            {
+                button1.Enabled = false;
+                button2.Enabled = false;
+            }
 
         }
 
@@ -163,16 +154,6 @@ namespace Wechat
             }
         }
 
-        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged_2(object sender, EventArgs e)
-        {
-
-        }
-
         private void ToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             int Index = 0;
@@ -183,10 +164,6 @@ namespace Wechat
                 listView1.Items[Index].Remove();
                 path1 = null;
                 sum -= pages[Index];
-
-           
-           
-
             }
         }
     }
