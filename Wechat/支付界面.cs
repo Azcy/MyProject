@@ -9,32 +9,74 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThoughtWorks.QRCode.Codec;
 using WxPayAPI;
-
+using System.Threading;
 namespace Wechat
 {
     public partial class 支付界面 : Form
     {
-        int page = 0;
+        private int page = 1;
         private string a = null, b = null;
         int c = 0;
+      bool flag1 = true;
+        WxPayData queryOrderInput = new WxPayData();
+        WxPayData result;
+
+        private string out_trade_no1 = null;//用来接收商品号
+
         public 支付界面()
         {
             InitializeComponent();
         }
+        private void ThreadMethod()
+        {
+            
+        
+            //Thread.Sleep(50);
 
+            while (flag1)
+            {
+                queryOrderInput.SetValue("out_trade_no", out_trade_no1);
+                result = WxPayApi.OrderQuery(queryOrderInput);
+
+                if (result.GetValue("return_code").ToString() == "SUCCESS" && result.GetValue("result_code").ToString() == "SUCCESS")
+                {
+                    //支付成功
+
+                    //测试使用 
+                 
+                  // MessageBox.Show(1 + "");
+                    //Thread.Sleep(200);
+                    if (result.GetValue("trade_state").ToString() == "SUCCESS")
+                    {
+                          flag1 = false;
+                        MessageBox.Show("支付成功");
+
+                        //Thread
+
+                    }
+                    //用户支付中，需要继续查询
+                    //else if (result.GetValue("trade_state").ToString() == "USERPAYING")
+                    //{
+                    //    MessageBox.Show("支付中");
+
+                    // }
+                }
+            }
+        }
+
+
+       
         private void 支付界面_Load(object sender, EventArgs e)
         {
             NativePay nativePay = new NativePay();
             //生成扫码支付模式二url
-            if (page == 0)
-            {
-                MessageBox.Show("请先加入你想要打印的文件。");
-            }
-            else
-            {
+         
+
+                //page * 15 为了测试改成1
+                string url2 = nativePay.GetPayUrl(1, "123456789", "商品名称", "商品标记", "商品描述");
 
 
-                string url2 = nativePay.GetPayUrl(page * 15, "123456789", "商品名称", "商品标记", "商品描述");
+                out_trade_no1 = nativePay.getout_trade_no();
                 //初始化二维码生成工具
                 QRCodeEncoder qrCodeEncoder = new QRCodeEncoder();
                 qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
@@ -44,35 +86,12 @@ namespace Wechat
 
                 //将字符串生成二维码图片
                 pictureBox1.Image = qrCodeEncoder.Encode(url2, Encoding.Default);
+                label2.Text = "页数:" + page + "\n" + "总价：" + page * 0.15 + "元";
+            //回调结果
 
-                //回调结果
-                //NativeNotify notify = new NativeNotify(this);
-
-
-                //if (nativePay.Getresult(page * 15, "123456789", "商品名称", "商品标记", "商品描述"))
-                // {
-                //    MessageBox.Show("");
-                // }
-
-                // if (nativePay.GetValue("return_code").ToString() == "SUCCESS" &&
-                //nativePay.GetValue("result_code").ToString() == "SUCCESS")
-                //  Boolean result1 = nativePay.Getresult(sum * 15, "123456789", "商品名称", "商品标记", "商品描述");
-                // if (result1)
-
-                //  if(data.GetValue("trade_state").ToString()== "SUCCESS")
-                //   {
-                //     System.Console.WriteLine("支付成功");
-                //  result = nativePay.Body;
-                //MessageBox.Show(result);
-                //     MessageBox.Show("支付成功");
-                //  }
-                //  else
-                // {
-                //     MessageBox.Show("支付失败");
-                //  }
-                //label2显示页数和价格
-                label2.Text = "页数:" + page+"\n"+"总价："+page*0.15+"元";
-            }
+            Thread t = new Thread(new ThreadStart(ThreadMethod));
+            t.Start();
+            Thread.Sleep(2000);
         }
         public void setpage(int sum)
         {
@@ -108,6 +127,25 @@ namespace Wechat
         {
             this.c = c;
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+         
+                Thread t = new Thread(new ThreadStart(ThreadMethod));
+                t.Start();
+                Thread.Sleep(2000);
+               
+
+            
+          
+        }
+
         public int payget3()
         {
             return this.c;

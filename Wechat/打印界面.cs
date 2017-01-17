@@ -10,8 +10,9 @@ using System.Windows.Forms;
 
 namespace Wechat
 {
+   
     public partial class 打印界面 : Form
-    {
+    { private int page1=0;
         public 打印界面()
         {
             InitializeComponent();
@@ -21,29 +22,35 @@ namespace Wechat
         {
 
         }
-        private int page;
+       
         public void set(int sum)
         {
-            this.page = sum;
+            this.page1 = sum;
         }
         public int get()
         {
-            return this.page;
+            return this.page1;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.set1(this.comboBox1.Text);
-            this.set2(this.comboBox2.Text);
-            this.set3(Convert.ToInt32( this.comboBox3.Text));
-            支付界面 pay1 = new 支付界面();
-            pay1.payset1(this.get1());
-            pay1.payset2(this.get2());
-            pay1.payset3(this.get3());
-            pay1.setpage(this.get()*this.get3());
-            pay1.Show();
-            this.Hide();
-
+            if (comboBox1.Text == "" || comboBox2.Text == "" || comboBox3.Text == "")
+            {
+                MessageBox.Show("您还有信息未填写完，请仔细填写！");
+            }
+            else
+            {
+                this.set1(this.comboBox1.Text);
+                this.set2(this.comboBox2.Text);
+                this.set3(Convert.ToInt32(this.comboBox3.Text));
+                支付界面 pay1 = new 支付界面();
+                pay1.payset1(this.get1());
+                pay1.payset2(this.get2());
+                pay1.payset3(this.get3());
+                pay1.setpage(this.get() * this.get3());
+                pay1.Show();
+                this.Hide();
+            }
         }
         string a = null, b = null;
         int c = 0;
