@@ -69,6 +69,13 @@ namespace Wechat
         {
             this.c = c;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new ClientUI().Show();
+            this.Hide();
+        }
+
         public int get3()
         {
             return this.c;

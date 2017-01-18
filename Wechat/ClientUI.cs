@@ -95,12 +95,11 @@ namespace Wechat
 
         private void button2_Click(object sender, EventArgs e)
         {
-                PrintUI print = new PrintUI();
-                this.setMessage(sum);
-                print.set(this.getMessage());   //传递word的页数
-                print.Show();
-                this.Hide();
-            
+            PrintUI print = new PrintUI();
+            this.setMessage(sum);
+            print.set(this.getMessage());   //传递word的页数
+            print.Show();
+            this.Hide();
         }
 
         private void 客户端界面_Load(object sender, EventArgs e)

@@ -43,7 +43,7 @@
             // btn1
             // 
             this.btn1.Location = new System.Drawing.Point(25, 201);
-            this.btn1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn1.Margin = new System.Windows.Forms.Padding(2);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(62, 26);
             this.btn1.TabIndex = 0;
@@ -57,8 +57,8 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(174, 201);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(187, 201);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(56, 26);
             this.button1.TabIndex = 2;
@@ -68,8 +68,8 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(328, 201);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(346, 201);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(56, 26);
             this.button2.TabIndex = 3;
@@ -104,7 +104,7 @@
             // 
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Location = new System.Drawing.Point(9, 10);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(417, 170);
             this.listView1.TabIndex = 4;
@@ -115,15 +115,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(456, 237);
+            this.ClientSize = new System.Drawing.Size(436, 237);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ClientUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "文档选择";
             this.Load += new System.EventHandler(this.客户端界面_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

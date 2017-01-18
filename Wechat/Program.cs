@@ -16,7 +16,7 @@ namespace Wechat
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ClientUI());
+            Application.Run(new WelcomeUI());
         }
     }
 }
