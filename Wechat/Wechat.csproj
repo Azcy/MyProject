@@ -122,6 +122,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ClientUI.resx">
       <DependentUpon>ClientUI.cs</DependentUpon>
@@ -147,6 +148,90 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\欢迎页面背景1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\欢迎页面1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\添加文件页面 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addFIle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newFIle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\文件1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\编辑1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\下一步1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\打印页面初始背景界面.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\File.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\编辑%28点击%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\下一步%28点击%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\确定.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\单面.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\双面.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\黑白.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\彩色.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\彩色灰.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\单面灰.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\黑白灰.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\双面灰.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\二维码支付界面1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

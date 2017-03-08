@@ -22,10 +22,5 @@ namespace Wechat
             new ClientUI().Show();
             this.Hide();
         }
-        //退出使用
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
     }
 }

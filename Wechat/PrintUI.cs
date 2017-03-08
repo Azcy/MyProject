@@ -30,23 +30,28 @@ namespace Wechat
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox1.Text == "" || comboBox2.Text == "" || comboBox3.Text == "")
+            setPrintCounts(Convert.ToInt32(textBox1.Text));
+            if (getPrintCounts() == 0)
             {
-                MessageBox.Show("您还有信息未填写完，请仔细填写！");
+                MessageBox.Show("打印份数不能为0");
             }
             else
             {
-                this.setPrintType(this.comboBox1.Text);
-                this.setPrintColor(this.comboBox2.Text);
-                this.setPrintCounts(Convert.ToInt32(this.comboBox3.Text));
-                NativePayUI nativePayUI = new NativePayUI();
-                nativePayUI.FilePath = FilePath;
-                nativePayUI.setPrintType(this.getPrintType());
-                nativePayUI.setPrintColor(this.getPrintColor());
-                nativePayUI.setPrintCounts(this.getPrintCounts());
-                nativePayUI.setPages(this.getPages() * this.getPrintCounts());
-                nativePayUI.Show();
-                this.Hide();
+                if (getPrintType() == null || getPrintColor() == null)
+                {
+                    MessageBox.Show("请选择单双面和黑白、彩印");
+                }
+                else
+                {
+                    NativePayUI nativePayUI = new NativePayUI();
+                    nativePayUI.FilePath = FilePath;
+                    nativePayUI.setPrintType(this.getPrintType());
+                    nativePayUI.setPrintColor(this.getPrintColor());
+                    nativePayUI.setPrintCounts(this.getPrintCounts());
+                    nativePayUI.setPages(this.getPages() * this.getPrintCounts());
+                    nativePayUI.Show();
+                    this.Hide();
+                }
             }
         }
         string printType = null, printColor = null;
@@ -75,7 +80,7 @@ namespace Wechat
         private void button2_Click(object sender, EventArgs e)
         {
             new ClientUI().Show();
-            this.Hide();
+            this.Close();
         }
 
         public int getPrintCounts()
@@ -83,6 +88,42 @@ namespace Wechat
             return this.printCounts;
         }
 
+        private void single_Click(object sender, EventArgs e)
+        {
+            setPrintType("单面");
+            single.BackgroundImage = Properties.Resources.单面灰;
+            doub.BackgroundImage = Properties.Resources.双面;
+        }
+
+        private void doub_Click(object sender, EventArgs e)
+        {
+            setPrintType("双面");
+            single.BackgroundImage = Properties.Resources.单面;
+            doub.BackgroundImage = Properties.Resources.双面灰;
+        }
+
+        private void pure_Click(object sender, EventArgs e)
+        {
+            setPrintColor("黑白");
+            pure.BackgroundImage = Properties.Resources.黑白灰;
+            coloful.BackgroundImage = Properties.Resources.彩色;
+        }
+
+        private void coloful_Click(object sender, EventArgs e)
+        {
+            setPrintColor("彩色");
+            pure.BackgroundImage = Properties.Resources.黑白;
+            coloful.BackgroundImage = Properties.Resources.彩色灰;
+        }
+
+        private void TextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b' && !Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+        }
         //文件路径属性
         public string FilePath
         {

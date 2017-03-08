@@ -18,6 +18,7 @@ namespace Wechat
         private string printType = null, printColor = null;
         private string filePath;
         int printCounts = 0;
+        Thread queryOrder;
         bool isNotPay = false;
         WxPayData queryOrderInput = new WxPayData();
         WxPayData result;
@@ -79,6 +80,9 @@ namespace Wechat
 
         private void NativePayUI_Load(object sender, EventArgs e)
         {
+            //设置label（价格、页数）的文本信息
+            label1.Text = "共" + getpages() + "页";
+            label3.Text = "需付" + getpages() * 0.15 + "元";
             NativePay nativePay = new NativePay();
             //生成扫码支付模式二url
             //page * 15 为了测试改成1
@@ -95,17 +99,16 @@ namespace Wechat
 
             //将字符串生成二维码图片
             pictureBox1.Image = qrCodeEncoder.Encode(url2, Encoding.Default);
-            label2.Text = "页数:" + pages + "\n" + "总价：" + pages * 0.15 + "元";
             //回调结果
 
-            Thread t = new Thread(new ThreadStart(ThreadMethod));
-            t.Start();
+            queryOrder = new Thread(new ThreadStart(ThreadMethod));
+            queryOrder.Start();
         }
         public void setPages(int pages)
         {
             this.pages = pages;
         }
-        public int getpage()
+        public int getpages()
         {
             return this.pages;
         }
@@ -135,6 +138,15 @@ namespace Wechat
         {
             return this.printCounts;
         }
+
+        private void back_Click(object sender, EventArgs e)
+        {
+            //关闭查单线程
+            queryOrder.Abort();
+            new PrintUI().Show();
+            this.Close();
+        }
+
         //文件路径属性
         public string FilePath
         {

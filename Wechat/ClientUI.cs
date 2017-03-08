@@ -44,6 +44,8 @@ namespace Wechat
                 //开放修改按钮和下一步按钮
                 button1.Enabled = true;
                 button2.Enabled = true;
+                button1.BackgroundImage = Properties.Resources.Edit;
+                button2.BackgroundImage = Properties.Resources.Next;
 
                 Microsoft.Office.Interop.Word.Application myWordApp = new Microsoft.Office.Interop.Word.Application();
                 myWordApp.Visible = false;
