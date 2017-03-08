@@ -100,8 +100,6 @@ namespace WxPayAPI
                 }
             }
             xml += "</xml>";
-
-            Console.WriteLine("xml------------------------------>" + xml);
             return xml;
         }
 
@@ -127,8 +125,6 @@ namespace WxPayAPI
             {
                 XmlElement xe = (XmlElement)xn;
                 m_values[xe.Name] = xe.InnerText;//获取xml的键值对到WxPayData内部的数据中
-                Console.WriteLine("xe.Name----------------------------->" + xe.Name);
-                Console.WriteLine("xe.InnerText----------------------------->" + xe.InnerText);
             }
 			
             try
@@ -169,7 +165,6 @@ namespace WxPayAPI
                 }
             }
             buff = buff.Trim('&');
-            Console.WriteLine("buff------------------------------>" + buff);
             return buff;
         }
 
@@ -181,7 +176,6 @@ namespace WxPayAPI
         public string ToJson()
         {
             string jsonStr = JsonMapper.ToJson(m_values);
-            Console.WriteLine("jsonStr------------------------------>" + jsonStr);
             return jsonStr;
         }
 

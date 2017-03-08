@@ -12,19 +12,20 @@ namespace Wechat
 {
    
     public partial class PrintUI : Form
-    { private int page1=0;
+    {   private int pages=0;
+        private string filePath;
         public PrintUI()
         {
             InitializeComponent();
         }
        
-        public void set(int sum)
+        public void setPages(int totalPages)
         {
-            this.page1 = sum;
+            this.pages = totalPages;
         }
-        public int get()
+        public int getPages()
         {
-            return this.page1;
+            return this.pages;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -35,39 +36,40 @@ namespace Wechat
             }
             else
             {
-                this.set1(this.comboBox1.Text);
-                this.set2(this.comboBox2.Text);
-                this.set3(Convert.ToInt32(this.comboBox3.Text));
-                NativePayUI pay1 = new NativePayUI();
-                pay1.payset1(this.get1());
-                pay1.payset2(this.get2());
-                pay1.payset3(this.get3());
-                pay1.setpage(this.get() * this.get3());
-                pay1.Show();
+                this.setPrintType(this.comboBox1.Text);
+                this.setPrintColor(this.comboBox2.Text);
+                this.setPrintCounts(Convert.ToInt32(this.comboBox3.Text));
+                NativePayUI nativePayUI = new NativePayUI();
+                nativePayUI.FilePath = FilePath;
+                nativePayUI.setPrintType(this.getPrintType());
+                nativePayUI.setPrintColor(this.getPrintColor());
+                nativePayUI.setPrintCounts(this.getPrintCounts());
+                nativePayUI.setPages(this.getPages() * this.getPrintCounts());
+                nativePayUI.Show();
                 this.Hide();
             }
         }
-        string a = null, b = null;
-        int c = 0;
-        public void set1(string a)
+        string printType = null, printColor = null;
+        int printCounts = 0;
+        public void setPrintType(string type)
         {
-            this.a = a;
+            this.printType = type;
         }
-        public string get1()
+        public string getPrintType()
         {
-            return this.a;
+            return this.printType;
         }
-        public void set2(string b)
+        public void setPrintColor(string color)
         {
-            this.b = b;
+            this.printColor = color;
         }
-        public string get2()
+        public string getPrintColor()
         {
-            return this.b;
+            return this.printColor;
         }
-        public void set3(int c)
+        public void setPrintCounts(int counts)
         {
-            this.c = c;
+            this.printCounts = counts;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -76,9 +78,22 @@ namespace Wechat
             this.Hide();
         }
 
-        public int get3()
+        public int getPrintCounts()
         {
-            return this.c;
+            return this.printCounts;
+        }
+
+        //文件路径属性
+        public string FilePath
+        {
+            get
+            {
+                return filePath;
+            }
+            set
+            {
+                filePath = value;
+            }
         }
     }
 }

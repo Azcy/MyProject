@@ -14,10 +14,11 @@ namespace Wechat
 {
     public partial class NativePayUI : Form
     {
-        private int page = 1;
-        private string a = null, b = null;
-        int c = 0;
-        bool flag1 = true;
+        private int pages = 1;
+        private string printType = null, printColor = null;
+        private string filePath;
+        int printCounts = 0;
+        bool isNotPay = false;
         WxPayData queryOrderInput = new WxPayData();
         WxPayData result;
 
@@ -29,24 +30,53 @@ namespace Wechat
         }
         private void ThreadMethod()
         {
-            while (flag1)
+            while (!isNotPay)
             {
                 queryOrderInput.SetValue("out_trade_no", out_trade_no1);
                 result = WxPayApi.OrderQuery(queryOrderInput);
 
+                Thread.Sleep(1000);
                 if (result.GetValue("return_code").ToString() == "SUCCESS" && result.GetValue("result_code").ToString() == "SUCCESS")
                 {
                     //支付成功
                     //------------暂时未写付款后的操作-------------------
                     if (result.GetValue("trade_state").ToString() == "SUCCESS")
                     {
-                          flag1 = false;
-                        MessageBox.Show("支付成功");
+                        isNotPay = true;
+                        if (printFile(FilePath))
+                        {
+                            MessageBox.Show("打印成功！");
+                        }
+                        else
+                        {
+                            MessageBox.Show("打印失败！");
+                        }
                     }
                 }
             }
         }
-  
+        //调用打印机打印文档
+        public bool printFile(string path)
+        {
+            //不现实调用程序窗口
+            System.Diagnostics.Process p = new System.Diagnostics.Process();
+            p.StartInfo.CreateNoWindow = true;
+            //采用系统操作系统自动识别的模式
+            p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            p.StartInfo.UseShellExecute = true;
+            p.StartInfo.FileName = path;
+            // label3.Text = K;
+            p.StartInfo.Verb = "print";
+            if (p.Start())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void NativePayUI_Load(object sender, EventArgs e)
         {
             NativePay nativePay = new NativePay();
@@ -65,46 +95,57 @@ namespace Wechat
 
             //将字符串生成二维码图片
             pictureBox1.Image = qrCodeEncoder.Encode(url2, Encoding.Default);
-            label2.Text = "页数:" + page + "\n" + "总价：" + page * 0.15 + "元";
+            label2.Text = "页数:" + pages + "\n" + "总价：" + pages * 0.15 + "元";
             //回调结果
 
             Thread t = new Thread(new ThreadStart(ThreadMethod));
             t.Start();
-            Thread.Sleep(2000);
         }
-        public void setpage(int sum)
+        public void setPages(int pages)
         {
-            this.page = sum;
+            this.pages = pages;
         }
         public int getpage()
         {
-            return this.page;
+            return this.pages;
         }
-        public void payset1(string a)
+        public void setPrintType(string type)
         {
-            this.a = a;
+            this.printType = type;
         }
-        public string payget1()
+        public string getPrintType()
         {
-            return this.a;
+            return this.printType;
         }
-        public void payset2(string b)
+        public void setPrintColor(string color)
         {
-            this.b = b;
+            this.printColor = color;
         }
-        public string payget2()
+        public string getPrintColor()
         {
-            return this.b;
-        }
-
-        public void payset3(int c)
-        {
-            this.c = c;
+            return this.printColor;
         }
 
-        public int payget3()
+        public void setPrintCounts(int counts)
         {
-            return this.c;
+            this.printCounts = counts;
+        }
+
+        public int getPrintCounts()
+        {
+            return this.printCounts;
+        }
+        //文件路径属性
+        public string FilePath
+        {
+            get
+            {
+                return filePath;
+            }
+            set
+            {
+                filePath = value;
+            }
         }
     }
 }
