@@ -108,6 +108,12 @@
     <Compile Include="NativePayUI.Designer.cs">
       <DependentUpon>NativePayUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="SuccessUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuccessUI.Designer.cs">
+      <DependentUpon>SuccessUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="WelcomeUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NativePayUI.resx">
       <DependentUpon>NativePayUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuccessUI.resx">
+      <DependentUpon>SuccessUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeUI.resx">
       <DependentUpon>WelcomeUI.cs</DependentUpon>
@@ -232,6 +241,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\back3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\success.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

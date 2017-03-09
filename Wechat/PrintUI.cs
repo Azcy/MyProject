@@ -31,9 +31,9 @@ namespace Wechat
         private void button1_Click(object sender, EventArgs e)
         {
             setPrintCounts(Convert.ToInt32(textBox1.Text));
-            if (getPrintCounts() == 0)
+            if (getPrintCounts() == 0 || getPrintCounts() > 10000)
             {
-                MessageBox.Show("打印份数不能为0");
+                MessageBox.Show("超出打印份数的范围");
             }
             else
             {

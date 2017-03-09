@@ -86,7 +86,7 @@ namespace Wechat
             NativePay nativePay = new NativePay();
             //生成扫码支付模式二url
             //page * 15 为了测试改成1
-            string url2 = nativePay.GetPayUrl(1, "123456789", "商品名称", "商品标记", "商品描述");
+            string url2 = nativePay.GetPayUrl(/*getpages()*15*/1, "123456789", "商品名称", "商品标记", "商品描述");
 
 
             out_trade_no1 = nativePay.getout_trade_no();
@@ -143,7 +143,7 @@ namespace Wechat
         {
             //关闭查单线程
             queryOrder.Abort();
-            new PrintUI().Show();
+            new ClientUI().Show();
             this.Close();
         }
 
